@@ -1,4 +1,4 @@
-# Add evidence here next time you run the Session 04 lab, e.g.:
+
 #   docker ps                         > node-is-container.txt
 #   kubectl get pods -n kube-system   > control-plane-pods.txt
 #   the SelfSubjectAccessReview output (allowed: false) > token-probe.txt

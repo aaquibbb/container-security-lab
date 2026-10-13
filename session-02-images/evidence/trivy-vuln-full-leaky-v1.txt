@@ -1,0 +1,57 @@
+Report Summary
+
+┌──────────────────────────┬────────┬─────────────────┬─────────┐
+│          Target          │  Type  │ Vulnerabilities │ Secrets │
+├──────────────────────────┼────────┼─────────────────┼─────────┤
+│ leaky:v1 (alpine 3.19.9) │ alpine │       10        │    -    │
+└──────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+leaky:v1 (alpine 3.19.9)
+
+Total: 10 (UNKNOWN: 0, LOW: 3, MEDIUM: 5, HIGH: 2, CRITICAL: 0)
+
+┌───────────────┬────────────────┬──────────┬────────┬──────────────────────┬──────────────────────┬──────────────────────────────────────────────────────────────┐
+│    Library    │ Vulnerability  │ Severity │ Status │  Installed Version   │    Fixed Version     │                            Title                             │
+├───────────────┼────────────────┼──────────┼────────┼──────────────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ busybox       │ CVE-2024-58251 │ MEDIUM   │ fixed  │ 1.36.1-r20           │ 1.36.1-r21           │ In netstat in BusyBox through 1.37.0, local users can launch │
+│               │                │          │        │                      │                      │ of networ...                                                 │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2024-58251                   │
+│               ├────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2025-46394 │ LOW      │        │                      │                      │ In tar in BusyBox through 1.37.0, a TAR archive can have     │
+│               │                │          │        │                      │                      │ filenames...                                                 │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2025-46394                   │
+├───────────────┼────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│ busybox-binsh │ CVE-2024-58251 │ MEDIUM   │        │                      │                      │ In netstat in BusyBox through 1.37.0, local users can launch │
+│               │                │          │        │                      │                      │ of networ...                                                 │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2024-58251                   │
+│               ├────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2025-46394 │ LOW      │        │                      │                      │ In tar in BusyBox through 1.37.0, a TAR archive can have     │
+│               │                │          │        │                      │                      │ filenames...                                                 │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2025-46394                   │
+├───────────────┼────────────────┼──────────┤        ├──────────────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ musl          │ CVE-2026-40200 │ HIGH     │        │ 1.2.4_git20230717-r5 │ 1.2.4_git20230717-r6 │ musl: musl libc: Arbitrary code execution and denial of      │
+│               │                │          │        │                      │                      │ service via stack-based...                                   │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2026-40200                   │
+│               ├────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-6042  │ MEDIUM   │        │                      │                      │ musl libc: GB18030 4-byte Decoder: musl libc: Denial of      │
+│               │                │          │        │                      │                      │ Service via inefficient...                                   │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2026-6042                    │
+├───────────────┼────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│ musl-utils    │ CVE-2026-40200 │ HIGH     │        │                      │                      │ musl: musl libc: Arbitrary code execution and denial of      │
+│               │                │          │        │                      │                      │ service via stack-based...                                   │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2026-40200                   │
+│               ├────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2026-6042  │ MEDIUM   │        │                      │                      │ musl libc: GB18030 4-byte Decoder: musl libc: Denial of      │
+│               │                │          │        │                      │                      │ Service via inefficient...                                   │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2026-6042                    │
+├───────────────┼────────────────┤          │        ├──────────────────────┼──────────────────────┼──────────────────────────────────────────────────────────────┤
+│ ssl_client    │ CVE-2024-58251 │          │        │ 1.36.1-r20           │ 1.36.1-r21           │ In netstat in BusyBox through 1.37.0, local users can launch │
+│               │                │          │        │                      │                      │ of networ...                                                 │
+│               │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2024-58251                   │
+│               ├────────────────┼──────────┤        │                      │                      ├──────────────────────────────────────────────────────────────┤
+│               │ CVE-2025-46394 │ LOW      │        │                      │                      │ In tar in BusyBox through 1.37.0, a TAR archive can have     │
+│               │                │          │        │                      │                      │ filenames...               

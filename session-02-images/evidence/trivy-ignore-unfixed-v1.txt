@@ -1,0 +1,36 @@
+/home/a34kib/container-security-lab/session-02-images/lab-a# trivy image --severity HIGH,CRITICAL --ignore-unfixed --scanners vuln leaky:v1
+2026-10-06T17:03:11+01:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-06T17:03:11+01:00	INFO	Detected OS	family="alpine" version="3.19.9"
+2026-10-06T17:03:11+01:00	INFO	[alpine] Detecting vulnerabilities...	os_version="3.19" repository="3.19" pkg_num=15
+2026-10-06T17:03:11+01:00	INFO	Number of language-specific files	num=0
+2026-10-06T17:03:11+01:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.74/guide/scanner/vulnerability#severity-selection for details.
+2026-10-06T17:03:11+01:00	WARN	This OS version is no longer supported by the distribution	family="alpine" version="3.19.9"
+2026-10-06T17:03:11+01:00	WARN	The vulnerability detection may be insufficient because security updates are not provided
+
+Report Summary
+
+┌──────────────────────────┬────────┬─────────────────┐
+│          Target          │  Type  │ Vulnerabilities │
+├──────────────────────────┼────────┼─────────────────┤
+│ leaky:v1 (alpine 3.19.9) │ alpine │        2        │
+└──────────────────────────┴────────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+leaky:v1 (alpine 3.19.9)
+
+Total: 2 (HIGH: 2, CRITICAL: 0)
+
+┌────────────┬────────────────┬──────────┬────────┬──────────────────────┬──────────────────────┬─────────────────────────────────────────────────────────┐
+│  Library   │ Vulnerability  │ Severity │ Status │  Installed Version   │    Fixed Version     │                          Title                          │
+├────────────┼────────────────┼──────────┼────────┼──────────────────────┼──────────────────────┼─────────────────────────────────────────────────────────┤
+│ musl       │ CVE-2026-40200 │ HIGH     │ fixed  │ 1.2.4_git20230717-r5 │ 1.2.4_git20230717-r6 │ musl: musl libc: Arbitrary code execution and denial of │
+│            │                │          │        │                      │                      │ service via stack-based...                              │
+│            │                │          │        │                      │                      │ https://avd.aquasec.com/nvd/cve-2026-40200              │
+├────────────┤                │          │        │                      │                      │                                                         │
+│ musl-utils │                │          │        │                      │                      │                                                         │
+│            │                │          │        │                      │                      │                                                         │
+│            │                │          │        │                      │                      │                                                         │
+└────────────┴────────────────┴──────────┴────────┴──────────────────────┴──────────────────────┴─────────────────────────────────────────────────────────┘

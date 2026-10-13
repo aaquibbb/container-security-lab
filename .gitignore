@@ -1,0 +1,14 @@
+# never commit real secrets used in the lab
+secrets.env
+*.key
+*.pem
+sbom.json
+
+# lab scratch / extraction artifacts
+leaky.tar
+extracted/
+layerdump/
+Dockerfile.noremove
+Dockerfile.fresh
+Dockerfile.debian
+Dockerfile.321

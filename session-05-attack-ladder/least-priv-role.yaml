@@ -1,0 +1,20 @@
+# Least-privilege fix for app-sa.
+# Namespaced Role (not ClusterRole), pinned to ONE named secret, get only (no list).
+#
+# Apply: kubectl apply -f least-priv-role.yaml
+#        kubectl create rolebinding db-creds-binding \
+#          --role=db-creds-reader --serviceaccount=default:app-sa
+#
+# CRUCIAL (RBAC is additive): also delete the broad grant, or this does nothing:
+#        kubectl delete clusterrolebinding app-sa-binding
+#        kubectl delete clusterrole secret-reader
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: db-creds-reader
+  namespace: default
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  resourceNames: ["db-creds"]   # only this one secret
+  verbs: ["get"]                # get only — no list (no enumeration)

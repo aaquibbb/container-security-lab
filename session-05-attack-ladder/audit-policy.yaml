@@ -1,0 +1,25 @@
+# Audit policy — CORRECTED to Metadata level for secrets.
+#
+# Secrets are logged at Metadata (who/what/when, NO body) so the secret VALUE
+# never lands in the audit log / SIEM. All detection-useful fields remain.
+# RBAC objects also Metadata here; pods/exec at Request; everything else Metadata.
+#
+# (The lab originally used RequestResponse for secrets to SHOW the leaked data —
+#  that is the wrong production setting; this file is the safe one.)
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+# secrets + RBAC changes: Metadata only — detect without storing the secret body
+- level: Metadata
+  resources:
+  - group: ""
+    resources: ["secrets"]
+  - group: "rbac.authorization.k8s.io"
+    resources: ["clusterrolebindings", "rolebindings", "clusterroles", "roles"]
+# pod create / exec: request detail (who did it, what they asked for)
+- level: Request
+  resources:
+  - group: ""
+    resources: ["pods", "pods/exec"]
+# everything else: a one-line who/what/when trail
+- level: Metadata

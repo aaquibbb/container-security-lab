@@ -17,7 +17,7 @@ MITRE ATT&CK Containers matrix.
 | 02 | Images, layers, supply chain | Layers are append-only — "deleted" secrets persist; scan before running (Trivy); EOL base is worse than a higher CVE count |
 | 03 | Docker daemon & socket | The daemon is root; the socket is its unauthenticated remote control; two independent paths to host-root (bind mount vs socket) |
 | 04 | Kubernetes fundamentals | Centralised control plane = cluster-wide blast radius; every pod carries a service-account token; attack ladder = pod → node → control plane |
-
+| 05 | Attack ladder & detection | Grant a pod's service account too much (the #1 real-world K8s misconfig), watch the climb from pod to cluster-secret-theft succeed |
 ## Environment
 
 - Ubuntu 24.04 LTS

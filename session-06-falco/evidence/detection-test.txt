@@ -1,0 +1,40 @@
+Session 06 — Falco custom rule A/B test
+========================================
+
+Falco run (modern eBPF, custom rule mounted):
+  docker run --rm -i -t --name falco --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /proc:/host/proc:ro \
+    -v /sys/kernel/tracing:/sys/kernel/tracing \
+    -v ~/falco-custom-rules.yaml:/etc/falco/rules.d/custom.yaml:ro \
+    falcosecurity/falco:latest \
+    falco -o engine.kind=modern_ebpf
+
+--- TRUE POSITIVE (real credential file) -> FIRES ---
+Trigger:
+  docker run --rm -v /etc:/host-etc alpine cat /host-etc/shadow
+
+Alert:
+  Critical Credential file read inside container
+  (user=root command=cat /host-etc/shadow file=/host-etc/shadow
+   container=86d414f4bcdb image=<NA>)
+  tags: [container, credential_access, T1552.001]
+
+--- FALSE POSITIVE (lookalike filename) -> SILENT ---
+Trigger:
+  echo '{"setting":"value"}' > ~/shadow-config.json
+  docker run --rm -v ~/shadow-config.json:/app/shadow-config.json alpine cat /app/shadow-config.json
+
+Result:
+  (no Falco alert — correctly ignored)
+  The original broad rule (fd.name contains "shadow") WOULD have false-fired here;
+  the tuned rule (exact list + endswith "/shadow") does not.
+
+--- also fired earlier (default ruleset) ---
+  Notice A shell was spawned in a container with an attached terminal
+  (built-in "Terminal shell in container" rule)
+  trigger: docker run --rm -it alpine sh -c 'echo hi; sleep 1'
+
+Note: image=<NA> is a timing artifact — the sub-second container exited before
+Falco's Docker-socket lookup resolved the image name. Container id (from cgroup)
+resolved instantly. Long-running workloads resolve the image fine.
